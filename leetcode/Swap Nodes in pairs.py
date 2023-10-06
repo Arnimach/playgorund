@@ -8,7 +8,7 @@ class ListNode:
 class Solution:
     def swapPairs(self, head):
 
-        # if no node in the list
+        # if no node present
         # return head
         if not head:
             return head
