@@ -1,0 +1,14 @@
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        # A dictinary to store int :index pair
+        nums_dict = {}
+
+        # iterate over the list nums 
+        for idx, val in enumerate(nums):
+            # find the difference of target and cuurent int
+            r = target - val
+            # if result is available in the dict, return indexes
+            if r in nums_dict:
+                return [nums_dict[r], idx]
+            # else update the result in the dict
+            nums_dict[val] = idx
