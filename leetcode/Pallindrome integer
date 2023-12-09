@@ -6,11 +6,13 @@ class Solution:
         if x < 0:
             return False
 
-        while x // 10 > 0:
-            n = int(np.log10(x)) + 1
-            if x // (10**(n-1)) != x % 10:
-                return False
-            x = x % (10**(n-1))
-            x = x // 10
-        
-        return True
+        # check if the reversed number is equal to the original number
+        num = x
+        reversed_num = 0
+
+        # reverse the number using by % and // method
+        while num > 0:
+            reversed_num = reversed_num * 10 + num % 10
+            num = num//10
+        # return True if the match
+        return x == reversed_num
