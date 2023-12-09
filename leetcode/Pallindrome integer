@@ -1,0 +1,16 @@
+import numpy as np
+
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        # return false if the number is negative
+        if x < 0:
+            return False
+
+        while x // 10 > 0:
+            n = int(np.log10(x)) + 1
+            if x // (10**(n-1)) != x % 10:
+                return False
+            x = x % (10**(n-1))
+            x = x // 10
+        
+        return True
