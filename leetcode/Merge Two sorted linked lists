@@ -1,0 +1,33 @@
+class Solution:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        
+        # initialize a new node that 
+        # will be the head of merged list
+        newHead = ListNode()
+        # pointer to add nodes
+        cur = newHead 
+        # current pointers for both lists
+        cur1 = list1
+        cur2 = list2
+        
+        # while either of lists are not None
+        # add the smaller node to the cur node
+        while cur1 and cur2:
+            if cur1.val < cur2.val:
+                cur.next = cur1
+                cur1 = cur1.next
+            else:
+                cur.next = cur2
+                cur2 = cur2.next
+            # move cur pointer to the next node
+            cur = cur.next
+        # add the list that is not None
+        if cur1:
+            cur.next = cur1
+        
+        if cur2:
+            cur.next = cur2
+
+        # return the next node of head pointer 
+        # of the merged list
+        return newHead.next
