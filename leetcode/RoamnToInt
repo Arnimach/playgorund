@@ -1,0 +1,25 @@
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        answer = 0  # final output
+        # a dictionary for roman to int codes
+        codes = {"M": 1000, 
+                "D": 500, 
+                "C": 100, 
+                "L": 50, 
+                "X": 10,
+                "V": 5,
+                "I": 1}
+        i = 0
+        n = len(s)
+        # iterate over the roman string
+        while i < n:
+            # if next number is greater than current
+            if i < (n-1) and (codes[s[i]] < codes[s[i+1]]):
+                    # deduct the number from final answer
+                    answer -= codes[s[i]]
+            # otherwise add the number to final answer
+            else:
+                answer += codes[s[i]]  
+            i += 1
+
+        return answer
