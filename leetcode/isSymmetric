@@ -1,0 +1,21 @@
+class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        
+        left_n = root.left
+        right_n = root.right
+        myq = [left_n , right_n]
+        
+        while len(myq) >= 2:
+            left_n = myq.pop(0)
+            right_n = myq.pop(0)
+        
+            if left_n and right_n:
+                if left_n.val != right_n.val:
+                    return False
+                myq = myq + [left_n.left, right_n.right, left_n.right, right_n.left]
+            elif not left_n and not right_n:
+                continue
+            else: 
+                return False
+    
+        return True
