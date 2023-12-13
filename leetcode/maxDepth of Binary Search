@@ -1,7 +1,30 @@
 class Solution:
+    # Recursive solution
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         # if the root is None, depth is 0
         if root is None:
             return 0
         # otherwise maximum depth is 1  + maximum of the depth of LST and depth of RST
         return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
+
+
+  # Iterative Solution
+  def maxDepth(self, root: Optional[TreeNode]) -> int:
+    
+    max_d = 0
+    
+    
+    if root:
+        que = [(root, 1)]
+        while que:
+            node, cur_d = que.pop(0)
+
+            if node.left:
+                que.append((node.left, cur_d + 1))
+            if node.right:
+                que.append((node.right, cur_d + 1))
+
+            max_d = max(max_d, cur_d)
+            
+    return max_d
+
