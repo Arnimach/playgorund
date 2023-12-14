@@ -1,0 +1,46 @@
+
+# Iterative Solution
+class Solution:
+    def minDepth(self, root: Optional[TreeNode]) -> int:
+        
+        if root:
+            
+            if root.left is None and root.right is None:
+                return 1
+
+            left = self.minDepth(root.left)
+            right = self.minDepth(root.right)
+
+            if root.left is None:
+                return 1 + right
+                
+            elif root.right is None:
+                return 1 + left
+
+            return 1 + min(left, right)
+
+        return 0
+
+
+# recusrive Solution
+class Solution:
+    def minDepth(self, root: Optional[TreeNode]) -> int:
+
+        queue = []
+
+        if root:
+            queue.append([root, 1])
+
+            while queue:
+                node, depth = queue.pop(0)
+
+                if node is not None:
+
+                    if node.left is None and node.right is None:
+                        return depth
+
+                    queue.append([node.left, depth+1])
+                    queue.append([node.right, depth+1])
+
+        return 0
+        
