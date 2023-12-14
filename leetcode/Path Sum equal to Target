@@ -1,0 +1,27 @@
+class Solution:
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+        
+       
+        if root:
+            # add the root  and its value
+            # to keep track of target sum
+            queue = [[root, root.val]]
+        
+            # Traverse the tree
+            while queue:
+                
+                # pop a node from the value
+                node, cur_sum = queue.pop()
+
+                # if popped node is a leaf node and cur_sum is equal to targetSum
+                # return True
+                if node.left is None and node.right is None and cur_sum == targetSum:
+                    return True
+                # if Left node exists, add it to the queue
+                if node.left:
+                    queue.append([node.left, node.left.val + cur_sum])
+                # if right node exists add it to the queue
+                if node.right:
+                    queue.append([node.right, node.right.val + cur_sum])
+        
+        return False
