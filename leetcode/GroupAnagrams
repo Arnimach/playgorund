@@ -1,0 +1,11 @@
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]: 
+        # create a default dictionary
+        mydict = defaultdict(list)
+        for item in strs:
+            # create sorted array for hashing
+            check = "".join(sorted(item))
+            # add array to assigned list
+            mydict[check].append(item)
+
+        return list(mydict.values())
