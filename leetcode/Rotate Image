@@ -1,0 +1,17 @@
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        # find length of the matrix
+        n = len(matrix)
+        # iterate over the matrix
+        # to find its Transpose first
+        for i in range(n):
+            for j in range(i):
+    
+                matrix[i][j], matrix[j][i] = matrix[j][i] , matrix[i][j]
+
+        # reverse the matrix to complete the 90 deg rotation
+        for i in range(n):
+            matrix[i].reverse()
