@@ -1,0 +1,18 @@
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+    
+        def dfs(num1, answer, result):
+            # if list is empty
+            # add answer to result
+            if not num1:
+                result.append(answer)
+                return
+            # depth first search of array num1
+            for i in range(len(num1)):
+                # recursively call the function on the remaining array
+                dfs(num1[:i] + num1[i+1:], answer + [num1[i]], result)
+            
+            return result
+
+       
+        return  dfs(nums, [], [])
