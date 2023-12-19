@@ -1,0 +1,13 @@
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        maximum, cur_sum = float("-inf"), 0
+
+        for i in nums:
+            # Keep adding numbers from left to right
+            cur_sum += i
+            # if cur_sum > maximum, update maximum
+            maximum = max(maximum, cur_sum)
+            # if cur_sum is < 0, set cur_sum to 0
+            cur_sum = max(cur_sum, 0)
+
+        return maximum
