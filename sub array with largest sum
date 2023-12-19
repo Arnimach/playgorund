@@ -1,0 +1,33 @@
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        maximum, cur_sum = float("-inf"), 0
+        low = 0
+        high = 0
+
+        while high < len(nums):
+            # Keep adding numbers from left to right
+            cur_sum += nums[high]
+
+            # if the sum is less than 0, set it to 0
+            if cur_sum < 0 :
+                    # but more than maximum
+                    if cur_sum > maximum:
+                        # update maximum
+                        maximum = cur_sum
+                        # update sub-array
+                        arr = nums[i:j+1]
+                    
+                    cur_sum = 0
+                    # update pointers for sub-array 
+                    high += 1
+                    low = high
+            # if sum is greater than or equal to zero
+            else:
+                # update maximum if cur sum is higher
+                if cur_sum > maximum:
+                    maximum = cur_sum
+                    arr = nums[i:j+1]
+                # move to the next item
+                j += 1
+
+        return arr, maximum
