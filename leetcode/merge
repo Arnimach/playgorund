@@ -1,0 +1,32 @@
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        # sort array to avoid comparing start value
+        intervals.sort()
+        out_arr = []
+        # initialize start and end
+        start, end = intervals[0]
+
+        for low, high in intervals[1:]:
+            # update high if intervals overlap
+            if high >= end >= low:
+                end = high
+            # if current interval lies inside 
+            # the previous one
+            # go to the next item
+            elif end > high:
+                continue
+            
+            else:
+                # when intervals dont overlap
+                # update the out_arr and find next intervals
+                out_arr.append([start, end])
+                start, end = low, high
+        
+        n = len(out_arr) - 1
+        # if out_arr is empty or last [start, end]
+        # does not overlap with the previous one
+        # add it to the output
+        if not out_arr or out_arr[n][1] < start:
+            out_arr.append([start, end])
+        
+        return out_arr
