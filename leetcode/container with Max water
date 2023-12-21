@@ -1,0 +1,25 @@
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        # set pointers for start and end
+        i = 0
+        j = len(height) - 1
+        # initialize area
+        area = 0
+
+        # while width of the containers is > 0
+        while i < j:
+            # length will be minimum of two heights
+            length = min(height[i], height[j])
+            # breadth is index difference
+            breadth = j - i
+            # keep the track of max area
+            area = max(area, length * breadth)
+
+            # increase the pointer from the side whichever
+            # has lower height
+            if height[i] < height[j]:
+                i += 1
+            else:
+                j -= 1
+
+        return area
