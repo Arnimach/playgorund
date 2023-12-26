@@ -1,0 +1,32 @@
+class Solution:
+    def nextPermutation(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        # if only one item
+        # dont do anything
+        if len(nums) == 1:
+            return
+        # assume that string is sorted in non-increasing order
+        d_sorted = True
+        # Starting from the end, find the 
+        # index of the item that breaks 
+        # the non-decreasing order of the array
+        for i in range(len(nums) - 1, 0, -1):
+            if nums[i-1] < nums[i]:
+                d_sorted = False
+                break
+        # if the array is sorted
+        # in non-increasing order
+        # reverse it
+        if d_sorted:
+            nums.reverse()
+        # find the next largest item than nums[i-1]
+        else:
+            for j in range(len(nums)-1, i-1, -1):
+                if nums[j] > nums[i-1]:
+                    break
+            # swap it with nums[i-1] 
+            nums[j], nums[i-1] = nums[i-1], nums[j]
+            # Reverse nums[i:] 
+            nums[i:] = reversed(nums[i:])
