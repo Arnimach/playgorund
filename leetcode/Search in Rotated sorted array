@@ -1,0 +1,31 @@
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        # one half of the rotated array will always be sorted
+        # and we are going to take an advantage of that to 
+        # implement a modified binary search
+        low, high = 0, len(nums) - 1
+
+        while low <= high:
+            mid = (low + high) // 2
+
+            # if target is middle element
+            if nums[mid] == target:
+                return mid
+            # if first half is sorted 
+            if nums[low] <= nums[mid]:
+                # and target element is in the first half
+                if nums[low] <= target < nums[mid]:
+                    high = mid - 1
+                # search the unsorted half of arr
+                else:
+                    low = mid + 1
+            # if second half of the arr is sorted
+            else:
+                # if target element is in the second half
+                if nums[mid] < target <= nums[high]:
+                    low = mid + 1
+                # else look in the unsorted first half
+                else:
+                    high = mid - 1
+        
+        return -1
