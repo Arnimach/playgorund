@@ -1,0 +1,15 @@
+class Solution:
+    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
+        # dictionary to save nums with index on the go
+        mydict = {}
+
+        # iterate over items in the array
+        for i in range(len(nums)):
+            # if item exists in mydict and index - i <= k return True
+            if nums[i] in mydict.keys() and abs(mydict[nums[i]] - i) <= k:
+                    return True
+            # update the latest index of the number
+            mydict[nums[i]] = i
+
+        return False
+        
