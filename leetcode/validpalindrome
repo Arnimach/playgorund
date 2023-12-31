@@ -1,0 +1,25 @@
+class Solution:
+    def validPalindrome(self, s: str) -> bool:
+        
+        # is string is already a pallindrome, 
+        # we can remove s letter from the mid
+        if s == s[::-1]:
+            return True
+        # otherwise keep comparing the letters
+        # 
+        left = 0
+        right = len(s) - 1
+        while left < right:
+            # if letters match go to the next pair
+            if s[left] == s[right]:
+                left += 1
+                right -= 1
+            # otherwise check if string is a pallindrome 
+            # in case we remove either left or right letter
+            # if yes, return True, else False
+            else:
+                new_left = s[:i] + s[i+1:]
+                new_right = s[:j] + s[j+1:]
+
+                return (new_left == new_left[::-1] or new_right == new_right[::-1])
+                          
