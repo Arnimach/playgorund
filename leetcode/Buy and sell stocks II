@@ -1,0 +1,38 @@
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        
+        # we will follow two pointers approach
+        # and keep increasing the pointer j untill
+        # value of profit is increasing
+        i , j = 0, 0
+        n = len(prices)
+        profit = 0
+        max_profit = 0
+        
+        # while we reach at the end of array
+        while j < n:
+            # current profit is difference between 
+            # buying on ith and selling on jth day
+            cur_max = prices[j] - prices[i]
+
+            # if it is greater than previous profit made
+            # update cur_max as profit
+            # and check profit for the next day
+            if cur_max >= profit:
+                profit = cur_max
+                j += 1
+
+            # if selling stock on next day makes less profit
+            # add last max value to max_profit
+            # increment the starting pointer i upto j
+            else:
+                max_profit += profit
+                profit = 0
+                i = j
+                j += 1
+
+        max_profit += profit
+        
+        return max_profit
+
+        
