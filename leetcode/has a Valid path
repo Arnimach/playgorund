@@ -1,0 +1,36 @@
+class Solution:
+    def validPath(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
+        # BFS
+        if source == destination:
+            return True
+
+        # a default dict to list all neighbours of a node
+        pathGraph = defaultdict(list)
+        # iterate iver edges and add neighbour of each node
+        # keeping in mind that the graph is bidirectional
+        for u, v in edges:
+            pathGraph[v].append(u)
+            pathGraph[u].append(v)
+
+        # A priority queue to facilitate BFS
+        queue = [source]
+        # a set to keep track of visited nodes
+        visited = set()
+
+        while queue:
+            # pop item from the queue
+            item = queue.pop(0)
+            # add neighbours only if the 
+            # node is not already visited
+            if item not in visited:
+                visited.add(item)
+                # add neighbour to the queue
+                for node in pathGraph[item]:
+                    # check True if any neighbour equals destination
+                    if node == destination:
+                        return True
+                    # add it to the queue to check further
+                    queue.append(node)
+
+
+        return False                 
