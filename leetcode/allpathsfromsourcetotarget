@@ -1,0 +1,32 @@
+class Solution:
+    def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
+        
+        # array to add source to target paths
+        sourceToTar = []
+
+        def findpath(item, arr, target):
+            # if item is equal to target, path is complete
+            # append it to the sourceToTar list and return
+            if item == target:
+                sourceToTar.append(arr)
+                return
+
+            # list of paths that go out 
+            # from a given node
+            path_arr = graph[item]
+
+            # if array is empty return
+            if not path_arr:
+                return
+
+            # for nodes from a given node
+            # add node to the existing paths
+            # recall the function findpath with added node
+            for next_item in path_arr:
+                findpath(next_item, arr + [next_item], target)
+
+        # call findpath
+        findpath(0, [0], len(graph)-1)
+        
+        return sourceToTar
+
