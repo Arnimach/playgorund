@@ -1,0 +1,31 @@
+class Solution:
+    def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
+        
+        
+        visited = set()  # set to track visited rooms
+        queue = [0] # a queue to add keys od accessible rooms
+
+
+        while queue:
+
+            # if at any point all the rooms 
+            # have been included in the set visited
+            if len(visited) == len(rooms):
+                return True
+
+            # get the room key at the front
+            room = queue.pop(0)
+            # add to the set visited
+            visited.add(room)
+                
+            # iterate over keys in a room
+            for key in rooms[room]:
+                # if room not already visited 
+                # add it to the queue to visit it further
+                if key not in visited:
+                    queue.append(key)
+        
+        # match the length of rooms with set visited
+        return len(visited) == len(rooms)
+
+
